@@ -14,9 +14,9 @@ export default function Header()    {
         <header className="sticky top-0 z-50 w-full px-6 py-5 bg-border-b border-[var(--bgExpr)]">
             <div className="flex items-center justify-between max-w-6xl mx-auto">
                 {/* left */}
-                <div className="flex items-center gap-2">
+                <div className="flex flex-col itmes-start gap-1 sm:flex-row sm:items-center sm:gap-2">
                     <Link
-                        href="/"
+                        href="/freelancer"
                         className="inline-block transition-transform duration-200 ease-out hover:scale-[1.03]"
                     >
                         <Image
@@ -30,7 +30,7 @@ export default function Header()    {
                     </Link>
 
                     <div className="flex flex-col leading-tight">
-                        <span className="font-semibold text-base sm:text-lg text-[var(--bgExpr)]">
+                        <span className="font-semibold text-xs sm:text-lg text-[var(--bgExpr)]">
                         SelfTrack
                         </span>
                         <span className="hidden sm:block text-xs text-[var(--bgExpr)]/80">
@@ -43,25 +43,25 @@ export default function Header()    {
                 <SignedIn>
                     <nav className="flex items-center gap-3">
                         <Link
-                            href="/active"
-                            className={`px-3 py-1 rounded-md ${
-                                            pathname === "/active"
-                                            ? "bg-[rgb(84,70,58)] text-white"
+                            href="/live"
+                            className={`px-3 py-1 rounded-md font-semibold ${
+                                            pathname === "/live"
+                                            ? "bg-[var(--bgExpr)] border border-[var(--Sun)] text-[var(--bgMilk)] font-bold"
                                             : "text-[var(--bdExpr)]"
                                     }`}
-                        >
-                        Active
+                        > 
+                        Live
                         </Link>
 
                         <Link
                             href="/new"
-                            className={`px-3 py-1 rounded-md ${
+                            className={`px-3 py-1 rounded-md font-bold ${
                                             pathname === "/new"
-                                            ? "bg-[rgb(84,70,58)] text-white"
+                                            ? "bg-[var(--bgExpr)] border border-[var(--Sun)] text-[var(--bgMilk)] font-bold"
                                             : "text-[var(--bdExpr)]"
                                     }`}
                         >
-                        + New
+                        New
                         </Link>
                     </nav>
                 </SignedIn>

@@ -5,8 +5,11 @@
   --bgColour: rgb(237, 211, 182);
   --bgLatte: #e8d6c3;  
   --bgMilk: #ede6de;  
-  --bgGreen: #18c615;
-  --bgGreener: #bc7c16;
+  /*--bgGreen: #18c615;*/
+  --bgOrange: #bc7c16;
+  --bgBright: #ec800c;
+  --bgFade: #ecac0c;
+  --bgMocca: #54463A;
   --bgCoffier: rgb(210, 185, 160);
   --bgMacc: rgb(196,168,140);
   --bgCort: rgb(178,150,120);
@@ -14,10 +17,11 @@
   --bgExpr: rgb(53, 40, 4);
   --Gold: rgb(176, 137, 46);
   --Sun: rgb(245, 178, 21);
+
   
 
   --background: var(--bgMilk); /*page bg*/
-  --foreground: var(--bdExpr); /*main text*/
+  /*--foreground: var(--bdExpr); /*main text*/
   
 }
 
@@ -29,7 +33,8 @@
 }
 
 header{
-  background-color: var(--bgGreener);
+  background-color: var(--bgOrange);
+  border-bottom: 0.05rem solid rgb(53, 40, 4);
 }
 
 body {
@@ -38,9 +43,9 @@ body {
   font-family: var(--font-sans,  Arial, Helvetica, sans-serif);
 }
 
-form  {
+/*form  {
   background-color: var(--bgCort);
-}
+}*/
 
 .textarea  {
   width: 100%;
@@ -58,4 +63,66 @@ form  {
   }
 }
 
+/*-------------------- HomePage ------------------------ */
+.presentation-container  {
+  display: block;
+  text-align: center;
+  border: 2px solid #1f1401;
+  border-radius: 2%;
+  padding: 20px;
+  margin: 60px auto 0;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  background-color: var(--bgLatte);
+  max-width: 600px;
+}
+
+.heading-presentationOne {
+  font-weight: semibold;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.heading-presentationTwo {
+  font-weight: semibold;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+
+/* ------------------- Sign-Pages ---------------------*/
+.sign-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1 rem;
+  height: 100vh;
+  margin-top: 2rem;
+}
+
+
+.wellcome {
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color:#1f1401;
+}
+
+/* -------- freelancer page -----*/
+aside nav a {
+  color: var(--bgOrange);
+  /*font-size: 1.3rem;*/
+  padding: 0.8rem;
+}
+
+aside nav a:hover {
+  color: var(--bgBright);
+}
+
+aside nav a.active {
+  color: var(--bgBright);
+  font-weight: 600;
+}
 
