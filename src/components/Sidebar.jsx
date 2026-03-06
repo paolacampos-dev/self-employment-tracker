@@ -20,16 +20,18 @@ export default function Sidebar() {
 
     return (
         <aside
-            className={`${collapsed ? "w-16" : "w-32 md:w-48"} min-h-screen bg-neutral-900 p-4 transition-all duration-300`}
+            className={`
+                min-h-screen bg-neutral-900 transition-all duration-300 shrink-0
+                ${collapsed ? "w-10 p-1 sm:w-14 sm:p-2" : "w-32 md:w-48 p-4"}
+            `}
         >
-
             <button
                 type="button"
-                className="md:hidden p-2 text-[var(--bgMilk)] text-xl"
                 onClick={() => setCollapsed((v) => !v)}
+                className="p-2 text-[var(--bgMilk)] hover:bg-white/10 rounded-md transition"
                 aria-label="Toggle sidebar"
             >
-                ☰
+                {collapsed ? "»" : "«"}
             </button>
 
             <nav className="flex flex-col gap-3">
