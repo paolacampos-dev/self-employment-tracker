@@ -5,6 +5,7 @@ import logoImg from "@/../public/LOGO.png";
 import { SignInButton, SignedIn, SignUpButton, SignedOut, UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import NewMenu from "@/components/NewMenu";
 
 
 export default function Header()    {
@@ -53,16 +54,7 @@ export default function Header()    {
                         Live
                         </Link>
 
-                        <Link
-                            href="/new"
-                            className={`px-3 py-1 rounded-md font-bold ${
-                                            pathname === "/new"
-                                            ? "bg-[var(--bgExpr)] border border-[var(--Sun)] text-[var(--bgMilk)] font-bold"
-                                            : "text-[var(--bdExpr)]"
-                                    }`}
-                        >
-                        New
-                        </Link>
+                        <NewMenu />
                     </nav>
                 </SignedIn>
 
