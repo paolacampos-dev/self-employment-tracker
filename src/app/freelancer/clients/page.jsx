@@ -24,16 +24,17 @@ export default async function ClientsPage({ searchParams })   {
 
     return (
         <>
+            {/* <h1 className="card-title">CLIENTS</h1> */}
             <nav className="client-sort">
                 <Link href="/freelancer/clients/?sort=asc">Asc</Link>
                 <Link href="/freelancer/clients/?sort=desc">Desc</Link>
             </nav>
-
-            <ul className="clients">
-                {clients.map((clients) => (
-                    <li key={clients.id}>
-                        <Link href={`/freelancer/clients/${clients.id}`}>
-                        {clients.company_name}
+            
+            <ul className="app-list">
+                {clients.map((client) => (
+                    <li key={client.id} className="app-card">
+                        <Link href={`/freelancer/clients/${client.id}`} className="font-bold">
+                        {client.company_name}
                         </Link>
                     </li>
                 ))}

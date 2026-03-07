@@ -16,23 +16,29 @@ export default async function ClientId({ params }) {
 
     return (
     <>
-        <div>
-            <h1>{data.company_name}</h1>
-            <h2>{data.url}</h2>
-            <h3>{data.description}</h3>
-            <div>
-                <p>{data.contact_name}</p>
-                <p>{data.contact_role}</p>
-                <p>{data.phone_number}</p>
-                <p>{data.email}</p>
-                <p>{data.address}</p>
-            </div> 
+        <div className="app-card ">
+            <div className="app-card-content">
+                <h1>{data.company_name}</h1>
+                <h2>{data.url}</h2>
+                <h3 className="description-details">{data.description}</h3>
 
-            <Link href={`/freelancer/clients/${data.id}/edit`}>
-            Edit
-            </Link>
+                <div className="app-details">
+                    <p>{data.contact_name}</p>
+                    <p>{data.contact_role}</p>
+                    <p>{data.phone_number}</p>
+                    <p>{data.email}</p>
+                    <p>{data.address}</p>
+                </div> 
+            </div>
 
-            <DeleteClientButton id={data.id} />
+            <div className="crud-wrapper">
+                <div className="crud-actions">
+                    <div className="edit-btn-wrapper"> 
+                        <Link href={`/freelancer/clients/${data.id}/edit`}className="app-button">Edit</Link>
+                    </div> 
+                    <DeleteClientButton id={data.id} />
+                </div>
+            </div>    
         </div>
     </>
     );

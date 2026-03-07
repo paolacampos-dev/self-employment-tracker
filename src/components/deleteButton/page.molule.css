@@ -1,0 +1,27 @@
+/* Delete btn*/
+
+.delete-btn-wrapper{
+    display: flex;
+    align-items: center;
+}
+
+.delete-confirmation {
+    display: flex;
+}
+
+
+.delete-confirmation p {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.delete-confirm-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.delete-confirm-actions form{
+    margin: 0;
+}
