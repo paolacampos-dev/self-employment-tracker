@@ -8,7 +8,7 @@ export default function ClientForm({ action, client }) {
                 <h1 className="text-lg sm:text-xl mb-2">
                 {client ? "Edit Client" : "New Client"}
                 </h1>
-
+        {/* ?. optional chaining: "check if job exist before trying to read id" */}
         <form action={action}>
             {client?.id && (
                 <input type="hidden" name="id" value={client.id} />

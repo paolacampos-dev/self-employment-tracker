@@ -242,15 +242,15 @@ aside nav a.active {
   margin: 1rem 0.10rem 0.5rem;
 }
 
-.client-sort {
+.list-sort {
   display: flex;
   justify-content: flex-start;
   gap: 0.5rem;
-  margin-bottom: 0 0 0.75rem 1rem;
+  margin: 0 0 0.75rem 1rem;
   padding: 0 0.75rem;
 }
 
-.client-sort a {
+.list-sort a {
   padding: 0.35rem 0.7rem;
   border-radius: 6px;
   border: 1px solid var(--bgExpr);
@@ -262,7 +262,7 @@ aside nav a.active {
   transition: all 0.2s ease;
 }
 
-.client-sort a:hover {
+.list-sort a:hover {
   background: var(--bgExpr);
   color: white;
 } 
