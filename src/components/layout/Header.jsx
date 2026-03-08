@@ -5,7 +5,7 @@ import logoImg from "@/../public/LOGO.png";
 import { SignInButton, SignedIn, SignUpButton, SignedOut, UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import NewMenu from "@/components/NewMenu";
+import NewMenu from "@/components/layout/NewMenu";
 
 
 export default function Header()    {

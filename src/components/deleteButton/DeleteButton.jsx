@@ -1,4 +1,4 @@
-"use client"
+/*"use client"
 import { useState } from "react";
 
 export default function DeleteButton({ action, id, message }) {
@@ -31,4 +31,4 @@ export default function DeleteButton({ action, id, message }) {
         )}
         </div>
     );
-}
+}*/

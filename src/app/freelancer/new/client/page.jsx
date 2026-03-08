@@ -69,8 +69,8 @@ export default function NewClientPage()   {
         formValues.address
         ],
     );
-    revalidatePath("/clients");
-    redirect("/freelancer");
+    revalidatePath("/freelancer/clients");
+    redirect("/freelancer/clients");
     }
     return (
         <>

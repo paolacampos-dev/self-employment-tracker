@@ -7,9 +7,9 @@ import { usePathname } from "next/navigation"
 const menu = [
     { name: "Clients", path: "/freelancer/clients", short: "C" },
     { name: "Jobs", path: "/freelancer/jobs", short: "J" },
+    { name: "Schedule", path: "/freelancer/schedule", short: "S" },
     { name: "Expenses", path: "/freelancer/expenses", short: "E" },
     { name: "Invoices", path: "/freelancer/invoices", short: "I" },
-    { name: "Schedule", path: "/freelancer/schedule", short: "S" },
     { name: "Finance", path: "/freelancer/finance", short: "F" },
 ]
 

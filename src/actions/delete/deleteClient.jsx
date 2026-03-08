@@ -5,7 +5,7 @@ import { db } from "@/utils/dbConnection";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function DeleteClient(formData) {
+export default async function DeleteClient(formData) {
     const { userId } = await auth();
     const id = formData.get("id");
 
