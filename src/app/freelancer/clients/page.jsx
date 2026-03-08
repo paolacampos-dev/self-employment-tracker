@@ -24,8 +24,7 @@ export default async function ClientsPage({ searchParams })   {
 
     return (
         <>
-            {/* <h1 className="card-title">CLIENTS</h1> */}
-            <nav className="client-sort">
+            <nav className="list-sort">
                 <Link href="/freelancer/clients/?sort=asc">Asc</Link>
                 <Link href="/freelancer/clients/?sort=desc">Desc</Link>
             </nav>

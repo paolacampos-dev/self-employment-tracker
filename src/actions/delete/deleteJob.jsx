@@ -5,14 +5,14 @@ import { db } from "@/utils/dbConnection";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export default async function DeleteClient(formData) {
+export default async function DeleteJob(formData) {
     const { userId } = await auth();
     const id = formData.get("id");
 
     await db.query(
-        `DELETE FROM clients WHERE id = $1 AND user_id = $2`,
+        `DELETE FROM jobs WHERE id = $1 AND user_id = $2`,
         [id, userId]
     );
-    revalidatePath("/freelancer/clients");
-    redirect("/freelancer/clients");
+    revalidatePath("/freelancer/jobs");
+    redirect("/freelancer/jobs");
 }
