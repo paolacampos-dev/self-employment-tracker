@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/utils/dbConnection";
 import Link from "next/link";
-import { ClientSegmentRoot } from "next/dist/client/components/client-segment";
+
 
 export default async function JobsPage({ searchParams })   {
     const params = await searchParams;
@@ -33,13 +33,14 @@ export default async function JobsPage({ searchParams })   {
                 <Link href="/freelancer/jobs/?sort=desc">Desc</Link>
             </nav>
 
-            <h1 className="color-[-var(--bgExpr)] text-2xl">{ jobs[0]?.company_name}</h1> 
+            {/* <h1 className="color-[var(--bgExpr)] text-2xl">Jobs</h1>  */}
             <ul className="app-list">
                 {jobs.map((job) => (
                     <li key={job.id} className="app-card">
                         <Link href={`/freelancer/jobs/${job.id}`} className="font-bold">
                         {job.title}
                         </Link>
+                        <p className="text-sm opacity-70">{job.company_name}</p>
                     </li>
                 ))}
             </ul>

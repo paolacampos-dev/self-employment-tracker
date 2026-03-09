@@ -1,4 +1,5 @@
 import styles from "./page.module.css";
+import { formatDateForInput } from "@/utils/dateHelpers.js";
 
 export default function JobForm({ action, job, clients })    {
     return(
@@ -7,19 +8,19 @@ export default function JobForm({ action, job, clients })    {
                 <h1 className="text-lg sm:text-xl mb-2">
                 {job ? "Edit Job" : "New Job"}
                 </h1>
-            <form action={action} clients={clients}>
+            <form action={action}> 
                 {job?.id && (
                 <input type="hidden" name="id" value={job.id} />
             )}
                 <div className={styles.formLabel}>
-                    <label htmlFor="client_id">Client:</label>
+                    <label htmlFor="clients_id">Client:</label>
                         <select
                             name="client_id"
                             defaultValue={job?.client_id || ""}
                             required
                             className={styles.formInput}
                         >
-                        <option value="" disabled>Select a client</option>
+                        <option value="" disabled>Select Client:</option>
                         {clients.map((client) => (
                         <option key={client.id} value={client.id}>
                         {client.company_name}
@@ -71,7 +72,7 @@ export default function JobForm({ action, job, clients })    {
                     <input
                         type="date"
                         name="start_date"
-                        defaultValue={job?.start_date || ""}
+                        defaultValue={formatDateForInput(job?.start_date)}
                         className={styles.formInput}
                     />
                 </div>
@@ -81,7 +82,7 @@ export default function JobForm({ action, job, clients })    {
                     <input
                         type="date"
                         name="deadline"
-                        defaultValue={job?.deadline || ""}
+                        defaultValue={formatDateForInput(job?.deadline)}
                         className={styles.formInput}
                     />
                 </div>
@@ -99,7 +100,7 @@ export default function JobForm({ action, job, clients })    {
                 <div className={styles.formLabel}>
                     <label htmlFor="hoursWorked">Hours Worked:</label>
                     <input
-                        type="numeric"
+                        type="number"
                         name="hours_worked"
                         defaultValue={job?.hours_worked || ""}
                         className={styles.formInput}
@@ -109,7 +110,7 @@ export default function JobForm({ action, job, clients })    {
                 <div className={styles.formLabel}>
                     <label htmlFor="hourlyRate">Hourly rate:</label>
                     <input
-                        type="numeric"
+                        type="number"
                         name="hourly_rate"
                         defaultValue={job?.hourly_rate || ""}
                         className={styles.formInput}
@@ -119,7 +120,7 @@ export default function JobForm({ action, job, clients })    {
                 <div className={styles.formLabel}>
                     <label htmlFor="price">Price:</label>
                     <input
-                        type="int"
+                        type="number"
                         name="price"
                         defaultValue={job?.price || ""}
                         className={styles.formInput}
