@@ -1,46 +1,44 @@
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/utils/dbConnection";
 import Link from "next/link";
-
+import { jobSortOptions, defaultJobSort } from "@/utils/jobSortOptions";
+import SortJobsSelect from "../../../components/SortJobsSelect.jsx";
 
 export default async function JobsPage({ searchParams })   {
     const params = await searchParams;
     const sort = params?.sort
     const { userId } = await auth()
-    const { rows } = await db.query(`
-                        SELECT jobs.*, clients.company_name
-                        FROM jobs
-                        JOIN clients ON jobs.client_id = clients.id
-                        WHERE jobs.user_id = $1`, 
-                        [userId]
-                    );
-    const jobs = [...rows];
-        if(sort==="desc")  {
-            jobs.sort((a, b) =>  
-                        b.title.localeCompare(a.title)
-                        );
-            } else if (sort==="asc")   {
-                    jobs.sort((a, b) =>  
-                    a.title.localeCompare(b.title)
-            );
-        }
+    
+    const orderBy = jobSortOptions[sort] || defaultJobSort;
+    
+    const query = `
+        SELECT jobs.*, clients.company_name
+        FROM jobs
+        JOIN clients ON jobs.client_id = clients.id
+        WHERE jobs.user_id = $1
+        ORDER BY ${orderBy}
+        `;
+
+    const { rows } = await db.query(query, [userId]);
+    const jobs = rows;
     console.log(rows);
 
     return (
         <>
-            <nav className="list-sort">
-                <Link href="/freelancer/jobs/?sort=asc">Asc</Link>
-                <Link href="/freelancer/jobs/?sort=desc">Desc</Link>
-            </nav>
+            <SortJobsSelect />
 
             {/* <h1 className="color-[var(--bgExpr)] text-2xl">Jobs</h1>  */}
             <ul className="app-list">
                 {jobs.map((job) => (
                     <li key={job.id} className="app-card">
-                        <Link href={`/freelancer/jobs/${job.id}`} className="font-bold">
+                        <Link 
+                            href={`/freelancer/jobs/${job.id}`} 
+                            className="font-bold"
+                        >
                         {job.title}
                         </Link>
                         <p className="text-sm opacity-70">{job.company_name}</p>
+                        <p>{job.status}</p>
                     </li>
                 ))}
             </ul>

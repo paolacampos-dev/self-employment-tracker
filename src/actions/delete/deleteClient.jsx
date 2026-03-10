@@ -9,8 +9,9 @@ export default async function DeleteClient(formData) {
     const { userId } = await auth();
     const id = formData.get("id");
 
-    await db.query(
-        `DELETE FROM clients WHERE id = $1 AND user_id = $2`,
+    await db.query(`
+        DELETE FROM clients WHERE id = $1 AND user_id = $2
+        `,
         [id, userId]
     );
     revalidatePath("/freelancer/clients");
