@@ -11,8 +11,10 @@ export async function UpdateJob(rawFormData) {
     if (!userId) {
     throw new Error("Unauthorized");
     }
-const clientsResult = await db.query(
-        `SELECT id, company_name FROM clients WHERE user_id = $1`, 
+
+    const clientsResult = await db.query(`
+        SELECT id, company_name FROM clients WHERE user_id = $1
+        `, 
         [userId]
     );
     const clients = clientsResult.rows;
@@ -32,19 +34,20 @@ const clientsResult = await db.query(
         price: rawFormData.get("price") || null,
     };
 
-    await db.query(
-        `UPDATE jobs
-            SET client_id = $1, 
-            title = $2,
-            job_details = $3,
-            status = $4,
-            start_date = $5,
-            deadline = $6,
-            hours_expected = $7,
-            hours_worked = $8,
-            hourly_rate = $9,
-            price= $10
-            WHERE id = $11 AND user_id = $12`,
+    await db.query(`
+        UPDATE jobs
+        SET client_id = $1, 
+        title = $2,
+        job_details = $3,
+        status = $4,
+        start_date = $5,
+        deadline = $6,
+        hours_expected = $7,
+        hours_worked = $8,
+        hourly_rate = $9,
+        price= $10
+        WHERE id = $11 AND user_id = $12
+        `,
         [
         formValues.clientId,
         formValues.title,
