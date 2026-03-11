@@ -5,7 +5,7 @@ import GetClientStatus from "../../../utils/clientStatus";
 
 export default async function ClientsPage({ searchParams })   {
     const params = await searchParams
-    const sort = params?.sort
+    const sort = await params?.sort
     const { userId } = await auth()
     const result = await db.query(
                         `
