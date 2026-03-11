@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-export default function SortJobsSelect() {
+export default function SortSelect({ options }) {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -36,14 +36,11 @@ export default function SortJobsSelect() {
                 className="border rounded px-2 py-1"
             >
                 <option value="">Default</option>
-                <option value="deadline_asc">Deadline ↑</option>
-                <option value="deadline_desc">Deadline ↓</option>
-                <option value="company_asc">Company A–Z</option>
-                <option value="company_desc">Company Z–A</option>
-                <option value="status_asc">Status A–Z</option>
-                <option value="status_desc">Status Z–A</option>
-                <option value="title_asc">Title A–Z</option>
-                <option value="title_desc">Title Z–A</option>
+                {options.map((option) => (
+                    <option key={option.value} value={option.value}>
+                        {option.label}
+                    </option>
+                ))}        
         </select>
     </div>
     );

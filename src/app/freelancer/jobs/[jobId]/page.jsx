@@ -42,7 +42,7 @@ export default async function JobId({ params }) {
                                 : ""
                             }`}
                         >
-                        {data.status}</h4>
+                        {data.status.replace("_", " ")}</h4>
                         <hr className="card-divider"></hr>
 
                         <div className="app-details">
