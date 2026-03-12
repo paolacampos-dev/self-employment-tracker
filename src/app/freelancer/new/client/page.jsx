@@ -3,7 +3,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server"
 import ClientForm from "@/components/forms/ClientForm"
-// import { currentUser, userId } from "@clerk/nextjs/server"
+
 
 
 export default function NewClient()   {
