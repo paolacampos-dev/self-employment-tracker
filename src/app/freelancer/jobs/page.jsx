@@ -38,15 +38,18 @@ export default async function JobsPage({ searchParams })   {
             {/* <h1 className="color-[var(--bgExpr)] text-2xl">Jobs</h1>  */}
             <ul className="app-list">
                 {jobs.map((job) => (
-                    <li key={job.id} className="app-card">
+                    <li key={job.id} className="app-card flex justify-between items-center">
                         <Link 
                             href={`/freelancer/jobs/${job.id}`} 
                             className="font-bold"
                         >
-                        {job.title}
+                        <div>
+                            {job.title}
+                            <p className="text-sm opacity-70">{job.company_name}</p>
+                            <p className={statusColors[job.status]}>{job.status.replace("_", " ")}</p>
+                        </div>
                         </Link>
-                        <p className="text-sm opacity-70">{job.company_name}</p>
-                        <p className={statusColors[job.status]}>{job.status.replace("_", " ")}</p>
+                        <Link href={`/freelancer/jobs/${job.id}/expenses`} className="app-button text-sm px-3 py-1 ml-4"> Expenses </Link>
                     </li>
                 ))}
             </ul>
