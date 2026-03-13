@@ -18,11 +18,8 @@
   --Gold: rgb(176, 137, 46);
   --Sun: rgb(245, 178, 21);
 
-  
-
   --background: var(--bgMilk); /*page bg*/
   /*--foreground: var(--bdExpr); /*main text*/
-  
 }
 
 @theme inline {

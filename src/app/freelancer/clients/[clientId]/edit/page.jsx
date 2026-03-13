@@ -6,10 +6,11 @@ export default async function EditClientPage({ params }) {
     const { clientId } = await params;
 
     const query = await db.query(
-        `SELECT * FROM clients WHERE id = $1`,
+        `SELECT * 
+        FROM clients 
+        WHERE id = $1`,
         [clientId]
     );
-
     const client = query.rows[0];
 
     return <ClientForm action={UpdateClient} client={client} />;

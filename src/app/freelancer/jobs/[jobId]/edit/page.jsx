@@ -8,16 +8,26 @@ export default async function EditJobPage({ params }) {
     const { jobId } = await params;
 
     const query = await db.query(
-        `SELECT * FROM jobs WHERE id = $1 AND  user_id=$2`,
+        `SELECT * 
+        FROM jobs 
+        WHERE id = $1 AND  user_id = $2`,
         [jobId, userId]
     );
     const job = query.rows[0];
 
     const clientsResult = await db.query(
-        `SELECT id, company_name FROM clients WHERE user_id = $1`,
+        `SELECT id, company_name 
+        FROM clients 
+        WHERE user_id = $1`,
         [userId]
     );
     const clients = clientsResult.rows;
     
-    return <JobForm action={UpdateJob} job={job} clients={clients}/>;
+    return (
+        <JobForm 
+            action={UpdateJob} 
+            job={job} 
+            clients={clients}
+        />
+    )
 }

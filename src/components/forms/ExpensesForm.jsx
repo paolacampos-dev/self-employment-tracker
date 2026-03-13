@@ -1,9 +1,14 @@
+"use client"
+
 import styles from "./page.module.css";
 import { formatDateForInput } from "@/utils/dateHelpers.js";
 import { expenseCategoryOptions } from "@/utils/expenseCategories";
+import { useState } from "react";
 
 
 export default function ExpensesForm({ action, expense, jobs, clients})    {
+    const [selectedClientId, setSelectedClientId] = useState(expense?.client_id? String(expense.client_id) : "")
+    const filteredJobs = jobs.filter((job) => String(job.client_id) === selectedClientId)
     return(
         <div className="app-page-spacing">
             <div className="app-card">
@@ -18,6 +23,7 @@ export default function ExpensesForm({ action, expense, jobs, clients})    {
                     <label htmlFor="clients_id">Client:</label>
                         <select
                             name="client_id"
+                            onChange={(e) => setSelectedClientId(e.target.value)}
                             defaultValue={expense?.client_id || ""}
                             required
                             className={styles.formInput}
@@ -40,7 +46,7 @@ export default function ExpensesForm({ action, expense, jobs, clients})    {
                             className={styles.formInput}
                         >
                         <option value="" disabled>Select Job:</option>
-                        {jobs.map((job) => (
+                        {filteredJobs.map((job) => (
                         <option key={job.id} value={job.id}>
                         {job.title}
                         </option>

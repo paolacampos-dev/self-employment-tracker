@@ -23,7 +23,7 @@ const jobsResult = await db.query(
         FROM jobs
         JOIN clients ON jobs.client_id = clients.id
         WHERE jobs.user_id = $1 
-        ORDER BY jobs.title ASC
+        ORDER BY clients.company_name ASC, jobs.title ASC
         `, 
         [userId]
     );
