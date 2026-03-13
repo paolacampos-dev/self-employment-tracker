@@ -65,5 +65,6 @@ export async function UpdateJob(rawFormData) {
     );
 
     revalidatePath(`/freelancer/jobs/${id}`);
+    revalidatePath(`/freelancer/jobs`);
     redirect(`/freelancer/jobs/${id}`);
     }

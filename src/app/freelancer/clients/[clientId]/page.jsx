@@ -5,14 +5,14 @@ import CrudActions from "@/components/CrudActions";
 export default async function ClientId({ params }) {
     const { clientId } = await params;
 
-    const query = await db.query(`SELECT * FROM clients WHERE id = $1`, 
+    const query = await db.query(
+        `SELECT * 
+        FROM clients 
+        WHERE id = $1`, 
         [
         clientId,
         ]);
-
     const data = query.rows[0];
-
-
 
     return (
     <>

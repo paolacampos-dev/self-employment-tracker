@@ -51,5 +51,6 @@ export async function UpdateClient(rawFormData) {
     );
 
     revalidatePath(`/freelancer/clients/${id}`);
+    revalidatePath(`/freelancer/clients`);
     redirect(`/freelancer/clients/${id}`);
     }
