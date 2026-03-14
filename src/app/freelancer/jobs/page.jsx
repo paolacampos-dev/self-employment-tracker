@@ -12,11 +12,19 @@ export default async function JobsPage({ searchParams })   {
     
     const orderBy = jobSortOptions[sort] || defaultJobSort;
     
-    const query = `
-        SELECT jobs.*, clients.company_name
+    const query =
+        `
+        SELECT
+            jobs.*,
+            clients.company_name,
+        COALESCE(SUM(expenses.amount), 0) AS total_expenses
         FROM jobs
-        JOIN clients ON jobs.client_id = clients.id
+        JOIN clients
+        ON jobs.client_id = clients.id
+        LEFT JOIN expenses
+        ON expenses.job_id = jobs.id
         WHERE jobs.user_id = $1
+        GROUP BY jobs.id, clients.company_name
         ORDER BY ${orderBy}
         `;
 
@@ -38,18 +46,24 @@ export default async function JobsPage({ searchParams })   {
             {/* <h1 className="color-[var(--bgExpr)] text-2xl">Jobs</h1>  */}
             <ul className="app-list">
                 {jobs.map((job) => (
-                    <li key={job.id} className="app-card flex justify-between items-center">
+                    <li key={job.id} className="app-card flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
                         <Link 
                             href={`/freelancer/jobs/${job.id}`} 
                             className="font-bold"
                         >
                         <div>
-                            {job.title}
-                            <p className="text-sm opacity-70">{job.company_name}</p>
+                            <p className="text-xs">{job.company_name}</p>
+                            <p className="opacity-70 underline font-semibold">{job.title}</p>
                             <p className={statusColors[job.status]}>{job.status.replace("_", " ")}</p>
                         </div>
                         </Link>
-                        <Link href={`/freelancer/jobs/${job.id}/expenses`} className="app-button text-sm px-3 py-1 ml-4"> Expenses </Link>
+                        <Link 
+                            href={`/freelancer/jobs/${job.id}/expenses`} 
+                            className="app-button flex flex-col items-center text-sm px-3 py-1 ml-4 self-start sm:self-auto"
+                        > 
+                        <span>Expenses</span>
+                        <span className="text-sm font-semibold "> £{Number(job.total_expenses).toFixed(2)}</span> 
+                        </Link>
                     </li>
                 ))}
             </ul>
