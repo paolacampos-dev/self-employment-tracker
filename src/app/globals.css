@@ -140,7 +140,7 @@ aside nav a.active {
 .container-app {
   max-width: 40rem;
   margin: 2rem auto;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
 }
 
 .app-card {
@@ -150,11 +150,17 @@ aside nav a.active {
   border-radius: 0.75rem;
   /* color: var(--bgExpr); */
   background: white;
-  margin: 0.25rem auto 0.8rem;
+  margin: 0.25rem 0.15rem 0.15rem 0.8rem;
   padding: 1.5rem;
   border: 1px solid rgba(0,0,0,0.06);
   box-shadow: 0 12px 30px rgba(0,0,0,0.12);
   transition: all 0.2s ease;
+}
+
+@media (min-width: 768px) {
+.app-card {
+margin: 0.25rem auto 0.8rem auto;
+}
 }
 
 .app-card:hover {

@@ -5,9 +5,8 @@ import { jobSortOptions, defaultJobSort, jobsSelectOptions } from "@/utils/SortO
 import SortSelect from "@/components/SortSelect";
 
 export default async function JobsPage({ searchParams })   {
-    "client use"
     const params = await searchParams;
-    const sort = await params?.sort || "";
+    const sort = params?.sort || "";
     const { userId } = await auth()
     
     const orderBy = jobSortOptions[sort] || defaultJobSort;
@@ -17,12 +16,12 @@ export default async function JobsPage({ searchParams })   {
         SELECT
             jobs.*,
             clients.company_name,
-        COALESCE(SUM(expenses.amount), 0) AS total_expenses
+            COALESCE(SUM(expenses.amount), 0) AS total_expenses
         FROM jobs
         JOIN clients
-        ON jobs.client_id = clients.id
+            ON jobs.client_id = clients.id
         LEFT JOIN expenses
-        ON expenses.job_id = jobs.id
+            ON expenses.job_id = jobs.id
         WHERE jobs.user_id = $1
         GROUP BY jobs.id, clients.company_name
         ORDER BY ${orderBy}
@@ -48,7 +47,7 @@ export default async function JobsPage({ searchParams })   {
                 {jobs.map((job) => (
                     <li key={job.id} className="app-card flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
                         <Link 
-                            href={`/freelancer/jobs/${job.id}`} 
+                            href={`/freelancer/jobs/${job.id}?returnTo=/freelancer/jobs`} 
                             className="font-bold"
                         >
                         <div>

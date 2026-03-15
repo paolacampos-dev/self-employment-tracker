@@ -2,11 +2,19 @@ import { db } from "@/utils/dbConnection";
 import DeleteJob from "@/actions/delete/deleteJob";
 import CrudActions from "@/components/CrudActions";
 import { formatDateForDisplay } from "@/utils/dateHelpers";
-import BackButton from "../../../../components/buttons/BackButton";
+import BackButton from "@/components/buttons/BackButton";
 
+export default async function JobId({ params, searchParams }) {
+    const resolvedParams = await params;
+    const resolvedSearchParams = await searchParams;
 
-export default async function JobId({ params }) {
-    const { jobId } = await params;
+    const returnTo = resolvedSearchParams?.returnTo || "/freelancer/jobs";
+    const { jobId } = resolvedParams;
+
+    console.log("resolvedParams:", resolvedParams);
+    console.log("resolvedSearchParams:", resolvedSearchParams);
+    console.log("jobId:", jobId);
+    console.log("returnTo:", returnTo);
 
     const query = await db.query(
         `SELECT jobs.*, clients.company_name
@@ -22,7 +30,7 @@ export default async function JobId({ params }) {
     return (
     <>
         <div className="container-app">
-            <BackButton href={"/freelancer/jobs"} />
+            <BackButton href={returnTo} />
 
             <div className="px-6 py-0 max-w-xl mx-auto">
                 <div className="app-card mt-0">

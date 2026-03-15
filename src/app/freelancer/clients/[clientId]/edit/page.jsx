@@ -1,6 +1,7 @@
 import { db } from "@/utils/dbConnection";
 import ClientForm from "@/components/forms/ClientForm.jsx";
 import { UpdateClient } from "@/actions/update/updateClient";
+import BackButton from "@/components/buttons/BackButton";
 
 export default async function EditClientPage({ params }) {
     const { clientId } = await params;
@@ -13,5 +14,10 @@ export default async function EditClientPage({ params }) {
     );
     const client = query.rows[0];
 
-    return <ClientForm action={UpdateClient} client={client} />;
+    return (
+    <>
+        <BackButton href={`/freelancer/clients/${clientId}`} className=""/>
+        <ClientForm action={UpdateClient} client={client} />;
+    </>
+    )
 }
