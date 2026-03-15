@@ -17,6 +17,7 @@ export default async function ExpensesPage() {
         `, 
         [userId]
     );
+    
     const expenses = result.rows;
 
     return (
@@ -51,7 +52,6 @@ export default async function ExpensesPage() {
                     </ul>
                 )}
             </div>
-            
         </div>
     );
 }

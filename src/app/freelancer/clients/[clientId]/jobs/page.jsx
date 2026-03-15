@@ -3,7 +3,7 @@ import { db } from "@/utils/dbConnection";
 import Link from "next/link";
 import SortSelect from "@/components/SortSelect";
 import { clientJobsSortOptions, defaultJobSort, clientJobsSelectOptions } from "@/utils/SortOptions";
-import BackButton from "../../../../../components/buttons/BackButton";
+import BackButton from "@/components/buttons/BackButton";
 
 export default async function ClientJobsPage({ params, searchParams }) {
 /* Because dealing with a dynamic route, Next has to solve first params.clientId and then searchParams.sort
@@ -47,9 +47,10 @@ export default async function ClientJobsPage({ params, searchParams }) {
     };
 
     return (
+        <>
+        <BackButton href="/freelancer/clients" />
         <div className="app-page-spacing">
-        <BackButton href={"/freelancer/clients"} />    
-        <div className="app-card">
+            <div className="app-card">
             <h1 className="text-xl font-bold mb-2 underline">Jobs for {client?.company_name}</h1>
 
             <SortSelect options={clientJobsSelectOptions}/>
@@ -63,7 +64,7 @@ export default async function ClientJobsPage({ params, searchParams }) {
                     {jobs.map((job) => (
                         <li key={job.id} className="app-card">
                             <Link
-                                href={`/freelancer/jobs/${job.id}`}
+                                href={`/freelancer/jobs/${job.id}?returnTo=/freelancer/clients/${client.id}/jobs`}
                                 className="font-bold"
                             >
                             {job.title}
@@ -75,5 +76,6 @@ export default async function ClientJobsPage({ params, searchParams }) {
             )}
         </div>
     </div>
+    </>
     );
 }

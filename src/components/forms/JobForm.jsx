@@ -3,7 +3,7 @@ import { formatDateForInput } from "@/utils/dateHelpers.js";
 
 export default function JobForm({ action, job, clients })    {
     return(
-        <div className="app-page-spacing">
+        <div className="py-0">
             <div className="app-card">
                 <h1 className="text-lg sm:text-xl mb-2">
                 {job ? "Edit Job" : "New Job"}

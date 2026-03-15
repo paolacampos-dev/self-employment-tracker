@@ -1,22 +1,28 @@
 import { db } from "@/utils/dbConnection";
 import DeleteClient from "@/actions/delete/deleteClient";
 import CrudActions from "@/components/CrudActions";
+import BackButton from "@/components/buttons/BackButton"
 
 export default async function ClientId({ params }) {
-    const { clientId } = await params;
+    const resolvedParams = await params
+    const { clientId } = resolvedParams;
 
     const query = await db.query(
-        `SELECT * 
+        `
+        SELECT * 
         FROM clients 
-        WHERE id = $1`, 
+        WHERE id = $1
+        `, 
         [
         clientId,
-        ]);
+        ]
+    );
     const data = query.rows[0];
 
     return (
     <>
-        <div className="px-6 py-6 max-w-xl mx-auto">
+        <BackButton href="/freelancer/clients/"/>
+        <div className="px-6 py-0 max-w-xl mx-auto">
             <div className="app-card">
                 <div className="app-card-content">
                     <h1>{data.company_name}</h1>

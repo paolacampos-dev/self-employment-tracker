@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { db } from "@/utils/dbConnection";
 import JobForm from "@/components/forms/JobForm.jsx";
 import { UpdateJob } from "@/actions/update/updateJob.jsx";
+import BackButton from "@/components/buttons/BackButton"
 
 export default async function EditJobPage({ params }) {
     const { userId } = await auth();
@@ -24,10 +25,14 @@ export default async function EditJobPage({ params }) {
     const clients = clientsResult.rows;
     
     return (
+        <>
+        <BackButton href={`/freelancer/jobs/${jobId}`} className="px-1 md:px-11" />
         <JobForm 
             action={UpdateJob} 
             job={job} 
             clients={clients}
+            className="py-0"
         />
+        </>
     )
 }

@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { db } from "@/utils/dbConnection";
 import ExpensesForm from "@/components/forms/ExpensesForm";
 import { UpdateExpense } from "@/actions/update/updateExpense";
+import BackButton from "@/components/buttons/BackButton";
 
 export default async function EditExpensePage ({ params })  {
     const { userId } = await auth();
@@ -48,11 +49,14 @@ export default async function EditExpensePage ({ params })  {
     console.log("clients:", clients)
 
     return(
-        <ExpensesForm 
-            action={UpdateExpense} 
-            expense={expense} 
-            jobs={jobs} 
-            clients={clients}
-        />
+        <>
+            <BackButton href={`/freelancer/expenses/${expenseId}`}/>
+            <ExpensesForm 
+                action={UpdateExpense} 
+                expense={expense} 
+                jobs={jobs} 
+                clients={clients}
+            />
+        </>
     )
 }
