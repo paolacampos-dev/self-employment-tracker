@@ -58,7 +58,7 @@ async function handleSubmit(rawData)    {
             INSERT INTO expenses (job_id, concept, category, amount, date, user_id)
             VALUES ($1, $2, $3, $4, $5, $6)
             `,
-            [job_id, concept, category, amount, date, userId]
+            [job_id, concept, category, amountCharged, dateIssued, userId]
         );
 
         revalidatePath("/freelancer/expenses");
