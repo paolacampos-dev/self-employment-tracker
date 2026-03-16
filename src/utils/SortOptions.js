@@ -20,21 +20,21 @@ const jobStatusReverse =
     `
 
 //-------------------clients----------------------//
-export const clientSortSelection = {
+export const clientSortOptions = {
     company_name_asc: "clients.company_name ASC NULLS LAST",
     company_name_desc: "clients.company_name DESC NULLS LAST",
-    jobStatusPriorityAsc,
-    jobStatusReverse,
+    /*jobStatusPriorityAsc,
+    jobStatusReverse,*/
 }
 
-export const clientSelectOption =  [
+export const clientSelectOptions =  [
     { value: "company_name_asc", label:"Company A-Z"},
-    { value: "company_name-desc", label:"Company Z-A"},
-    { value: "status_priority", label: "Status priority" },
-    { value: "status_reverse", label: "Status reverse" },
+    { value: "company_name_desc", label:"Company Z-A"},
+    /*{ value: "status_priority", label: "Status priority" },
+    { value: "status_reverse", label: "Status reverse" },*/
 ]
 
-export const defaultClientSort = "clients.companyName ASC";
+export const defaultClientSort = "clients.company_name ASC NULLS LAST";
 
 
 // ----------------Jobs -------------------------//

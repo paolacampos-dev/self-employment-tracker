@@ -6,6 +6,7 @@ import { clientJobsSortOptions, defaultJobSort, clientJobsSelectOptions } from "
 import BackButton from "@/components/buttons/BackButton";
 
 export default async function ClientJobsPage({ params, searchParams }) {
+    const { userId } = await auth();
 /* Because dealing with a dynamic route, Next has to solve first params.clientId and then searchParams.sort
     (params and searchParams are promises, not objects)
     (if a property access fails on async data --> await the object first):
@@ -13,11 +14,9 @@ export default async function ClientJobsPage({ params, searchParams }) {
     2. Store the resolved object in a variable
     3. read .sort from the resolved object*/
     const resolvedParams = await params;
-    const resolvedSearchParams = await searchParams;
     const { clientId } = resolvedParams;
+    const resolvedSearchParams = await searchParams;
     const sort = resolvedSearchParams?.sort || "";
-
-    const { userId } = await auth();
     const orderBy = clientJobsSortOptions[sort] || defaultJobSort;
 
     const clientResult = await db.query(`
