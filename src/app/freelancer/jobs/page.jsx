@@ -41,8 +41,7 @@ export default async function JobsPage({ searchParams })   {
     return (
         <>
             <SortSelect options={jobsSelectOptions}/>
-
-            {/* <h1 className="color-[var(--bgExpr)] text-2xl">Jobs</h1>  */}
+            <div className="app-card">
             <ul className="app-list">
                 {jobs.map((job) => (
                     <li key={job.id} className="app-card flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
@@ -66,6 +65,7 @@ export default async function JobsPage({ searchParams })   {
                     </li>
                 ))}
             </ul>
+            </div>
         </>
     );
 }
