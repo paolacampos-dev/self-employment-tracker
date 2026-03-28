@@ -44,7 +44,7 @@ export default function Header()    {
                 <SignedIn>
                     <nav className="flex items-center gap-3">
                         <Link
-                            href="/live"
+                            href="/freelancer/live"
                             className={`px-3 py-1 rounded-md font-semibold ${
                                             pathname === "/live"
                                             ? "bg-[var(--bgExpr)] border border-[var(--Sun)] text-[var(--bgMilk)] font-bold"
