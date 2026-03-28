@@ -7,6 +7,7 @@ import { clientSortOptions, defaultClientSort, clientSelectOptions } from "@/uti
 
 export default async function ClientsPage({ searchParams })   {
     const { userId } = await auth()
+
     const resolvedSearchParams = await searchParams;
     const sort = resolvedSearchParams?.sort || "";
     const orderBy = clientSortOptions[sort] || defaultClientSort;

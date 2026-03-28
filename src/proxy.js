@@ -1,7 +1,7 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
-/* everything that comes after this route is protected "/(.*)" */
-const isProtectedRoute = createRouteMatcher([ "/signin/(.*)", "/signup/(.*)", "/freelancer/(.*)" ])
+/* everything that comes after this route is protected "/...(.*)" meaning private */
+const isProtectedRoute = createRouteMatcher([ "/freelancer/(.*)" ])
 
 export default clerkMiddleware(async (auth, req) => {
     if(isProtectedRoute(req)) await auth.protect()
