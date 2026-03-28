@@ -1,9 +1,13 @@
-import Presentation from "@/components/Presentation"
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import Presentation from "@/components/Presentation";
 
-export default function HomePage()   {
-    return (
-        <>
-            <Presentation />
-        </>
-    )
+export default async function HomePage() {
+    const { userId } = await auth();
+
+    if (userId) {
+        redirect("/freelancer");
+    }
+
+    return <Presentation />;
 }
