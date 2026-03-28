@@ -35,40 +35,64 @@ export default async function ClientsPage({ searchParams })   {
 
     return (
         <>
-            <SortSelect options={clientSelectOptions}/>
+        <SortSelect options={clientSelectOptions} />
+
             <div className="app-card">
-            <ul className="app-list">
-                {clients.map((client) => {
-                    const status = GetClientStatus(client.job_statuses);
+                {clients.length === 0 ? (
+                    <div className="text-center py-8">
+                        <h2 className="text-lg font-semibold mb-2">
+                            No clients yet
+                        </h2>
+                        <p className="text-sm text-gray-600 mb-4">
+                            Create your first client to start managing your workload.
+                        </p>
 
-                    return  (
-                        <li key={client.id} className="app-card">
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0">  
-                            <h2 className="font-bold">{client.company_name}</h2>
-                            {status.label && (
-                                <p className={status.className}>{status.label}</p>
-                            )}
+                        <Link
+                            href="/freelancer/new/client"
+                            className="app-button"
+                        >
+                            + New Client
+                        </Link>
+                    </div>
+                ) : (
+                    <ul className="app-list">
+                        {clients.map((client) => {
+                            const status = GetClientStatus(client.job_statuses);
 
-                            <div className="flex flex-col gap-2 items-end">
-                                <Link
-                                    href={`/freelancer/clients/${client.id}`}
-                                    className="app-button app-button-sm"
-                                >
-                                View
-                                </Link>
-                                
-                                <Link
-                                    href={`/freelancer/clients/${client.id}/jobs`}
-                                    className="app-button app-button-sm"
-                                >
-                                Jobs
-                                </Link>
-                            </div>
-                        </div>
-                    </li>
-                )
-            })}
-            </ul>
+                            return (
+                                <li key={client.id} className="app-card">
+                                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0">
+                                        <h2 className="font-bold">
+                                            {client.company_name}
+                                        </h2>
+
+                                        {status.label && (
+                                            <p className={status.className}>
+                                                {status.label}
+                                            </p>
+                                        )}
+
+                                        <div className="flex flex-col gap-2 items-end">
+                                            <Link
+                                                href={`/freelancer/clients/${client.id}`}
+                                                className="app-button app-button-sm"
+                                            >
+                                                View
+                                            </Link>
+
+                                            <Link
+                                                href={`/freelancer/clients/${client.id}/jobs`}
+                                                className="app-button app-button-sm"
+                                            >
+                                                Jobs
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                )}
             </div>
         </>
     );

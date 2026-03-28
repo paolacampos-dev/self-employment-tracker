@@ -42,29 +42,47 @@ export default async function JobsPage({ searchParams })   {
         <>
             <SortSelect options={jobsSelectOptions}/>
             <div className="app-card">
-            <ul className="app-list">
-                {jobs.map((job) => (
-                    <li key={job.id} className="app-card flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
-                        <Link 
-                            href={`/freelancer/jobs/${job.id}?returnTo=/freelancer/jobs`} 
-                            className="font-bold"
+                {jobs.length === 0 ? (
+                    <div className="text-center py-8">
+                        <h2 className="text-lg font-semibold mb-2">
+                            No jobs yet
+                        </h2>
+                        <p className="text-sm text-gray-600 mb-4">
+                            Create your first job to start managing your worload.
+                        </p>
+                
+                        <Link
+                            href="/freelancer/new/job"
+                            className="app-button"
                         >
-                        <div>
-                            <p className="text-xs">{job.company_name}</p>
-                            <p className="opacity-70 underline font-semibold">{job.title}</p>
-                            <p className={statusColors[job.status]}>{job.status.replace("_", " ")}</p>
-                        </div>
+                            + New Job
                         </Link>
-                        <Link 
-                            href={`/freelancer/jobs/${job.id}/expenses`} 
-                            className="app-button flex flex-col items-center text-sm px-3 py-1 ml-4 self-start sm:self-auto"
-                        > 
-                        <span>Expenses</span>
-                        <span className="text-sm font-semibold "> £{Number(job.total_expenses).toFixed(2)}</span> 
-                        </Link>
-                    </li>
-                ))}
-            </ul>
+                    </div>
+                ) : (
+                    <ul className="app-list">
+                        {jobs.map((job) => (
+                            <li key={job.id} className="app-card flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
+                                <Link 
+                                    href={`/freelancer/jobs/${job.id}?returnTo=/freelancer/jobs`} 
+                                    className="font-bold"
+                                >
+                                <div>
+                                    <p className="text-xs">{job.company_name}</p>
+                                    <p className="opacity-70 underline font-semibold">{job.title}</p>
+                                    <p className={statusColors[job.status]}>{job.status.replace("_", " ")}</p>
+                                </div>
+                                </Link>
+                                <Link 
+                                    href={`/freelancer/jobs/${job.id}/expenses`} 
+                                    className="app-button flex flex-col items-center text-sm px-3 py-1 ml-4 self-start sm:self-auto"
+                                > 
+                                <span>Expenses</span>
+                                <span className="text-sm font-semibold "> £{Number(job.total_expenses).toFixed(2)}</span> 
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </div>
         </>
     );

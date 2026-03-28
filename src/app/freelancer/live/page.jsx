@@ -1,3 +1,3 @@
 export default function LivePage() {
-    return <h1>Live page</h1>;
+    return <p>Live module coming soon</p>;
 }

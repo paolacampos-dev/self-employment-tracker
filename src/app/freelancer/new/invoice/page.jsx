@@ -1,5 +1,5 @@
 export default function InvoicePage ()    {
     return (
-        <>Hi!</>
+        <><p>No invoices create yet</p></>
     )
 }

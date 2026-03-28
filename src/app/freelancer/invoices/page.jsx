@@ -1,3 +1,3 @@
 export default function InvoicesPage() {
-    return <h1>Invoice page</h1>;
+    return <p>Invoice module coming soon</p>;
 }

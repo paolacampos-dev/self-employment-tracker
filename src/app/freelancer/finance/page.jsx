@@ -1,3 +1,3 @@
 export default function FinancePage() {
-    return <h1>Finance page</h1>;
+    return <p>Finance module coming soon</p>;
 }

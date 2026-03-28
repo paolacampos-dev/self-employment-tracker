@@ -23,33 +23,48 @@ export default async function ExpensesPage() {
     return (
         <div className="app-page-spacing">
             <div className="app-card">
-                <h1 className="text-xl font-bold mb-4 underline">Expenses</h1>
-
                 {expenses.length === 0 ? (
-                    <p>No expenses yet.</p>
+                    <div className="text-center py-8">
+                        <h2 className="text-lg font-semibold mb-2">
+                            No expenses yet
+                        </h2>
+                        <p className="text-sm text-gray-600 mb-4">
+                            Create your first expense to start managing your workload.
+                        </p>
+
+                    <Link
+                        href="/freelancer/new/expense"
+                        className="app-button"
+                    >
+                        + New Expense
+                    </Link>
+                </div>
                 ) : (
-                    <ul className="app-list">
-                        {expenses.map((expense) => (
-                            <li key={expense.id} className="app-card flex justify-between items-center">
-                                <div>
-                                    <p>{expense.company_name}</p>
-                                    <p>{expense.title}</p>
-                                    <p className="font-bold">{expense.concept}</p>
-                                    <p>{expense.category}</p>
-                                    <p>£{expense.amount}</p>
-                                    <p>{formatDateForDisplay(expense.date)}</p>
-                                </div>
-                                <div>
-                                    <Link
-                                        href={`/freelancer/expenses/${expense.id}`}
-                                        className="app-button app-button-sm"
-                                    >
-                                    View
-                                    </Link>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
+                    <div>
+                        <h1 className="text-xl font-bold mb-4 underline">Expenses</h1>
+                        <ul className="app-list">
+                            {expenses.map((expense) => (
+                                <li key={expense.id} className="app-card flex justify-between items-center">
+                                    <div>
+                                        <p>{expense.company_name}</p>
+                                        <p>{expense.title}</p>
+                                        <p className="font-bold">{expense.concept}</p>
+                                        <p>{expense.category}</p>
+                                        <p>£{expense.amount}</p>
+                                        <p>{formatDateForDisplay(expense.date)}</p>
+                                    </div>
+                                    <div>
+                                        <Link
+                                            href={`/freelancer/expenses/${expense.id}`}
+                                            className="app-button app-button-sm"
+                                        >
+                                        View
+                                        </Link>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 )}
             </div>
         </div>

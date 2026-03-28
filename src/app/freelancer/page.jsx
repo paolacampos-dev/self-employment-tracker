@@ -1,7 +1,7 @@
 export default function FreelancerPage ()   {
     return(
         <>
-        <h1>hello</h1>
+        <h1>Weelcome to your dasboard</h1>
         </>
     )
 }
