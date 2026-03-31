@@ -1,25 +1,5 @@
-const jobStatusPriorityAsc = 
-    `
-    CASE
-    WHEN jobs.status = 'live' THEN 1
-    WHEN jobs.status = 'in_progress' THEN 2
-    WHEN jobs.status = 'completed' THEN 3
-    WHEN jobs.status = 'cancelled' THEN 4
-    ELSE 5
-    END ASC
-    `
-const jobStatusReverse = 
-    `
-    CASE
-    WHEN jobs.status = 'live' THEN 1
-    WHEN jobs.status = 'in_progress' THEN 2
-    WHEN jobs.status = 'completed' THEN 3
-    WHEN jobs.status = 'cancelled' THEN 4
-    ELSE 5
-    END DESC
-    `
 
-//-------------------clients----------------------//
+//-------------------Clients----------------------//
 export const clientSortOptions = {
     company_name_asc: "clients.company_name ASC NULLS LAST",
     company_name_desc: "clients.company_name DESC NULLS LAST",
@@ -38,6 +18,7 @@ export const defaultClientSort = "clients.company_name ASC NULLS LAST";
 
 
 // ----------------Jobs -------------------------//
+
 export const jobSortOptions = {
     deadline_asc: "jobs.deadline ASC NULLS LAST",
     deadline_desc: "jobs.deadline DESC NULLS LAST",
@@ -63,7 +44,7 @@ export const jobsSelectOptions = [
 export const defaultJobSort = "jobs.title ASC";
 
 
-//----------clients/Jobs------------------------//
+//----------Clients/Jobs------------------------//
 export const clientJobsSortOptions = {
     deadline_asc: "jobs.deadline ASC NULLS LAST",
     deadline_desc: "jobs.deadline DESC NULLS LAST",
@@ -82,7 +63,10 @@ export const clientJobsSelectOptions = [
     { value: "title_desc", label: "Title Z-A" },
 ];
 
-//------ expenses----------//
+export const defaultClientJobsSort = "Status priority"
+
+
+//------ Expenses----------//
 export const expensesSortOptions = {
     deadline_asc: "jobs.deadline ASC NULLS LAST",
     deadline_desc: "jobs.deadline DESC NULLS LAST",
@@ -102,5 +86,8 @@ export const expensesSelectOptions = [
 ];
 
 export const defaultExpensesbSort = "jobs.title ASC";
+
+
+// ---------------Invoices -----//
 
 

@@ -1,3 +1,5 @@
+//--------Clients---------------//
+
 export default function GetClientStatus(jobs)   {
     if(!jobs || jobs.length === 0) {
             return {
@@ -53,3 +55,28 @@ export default function GetClientStatus(jobs)   {
         className: "",
     }
 }
+
+//---------------------Jobs------------------//
+
+const jobStatusPriorityAsc = 
+    `
+    CASE
+    WHEN jobs.status = 'live' THEN 1
+    WHEN jobs.status = 'in_progress' THEN 2
+    WHEN jobs.status = 'completed' THEN 3
+    WHEN jobs.status = 'cancelled' THEN 4
+    ELSE 5
+    END ASC
+    `
+const jobStatusReverse = 
+    `
+    CASE
+    WHEN jobs.status = 'live' THEN 1
+    WHEN jobs.status = 'in_progress' THEN 2
+    WHEN jobs.status = 'completed' THEN 3
+    WHEN jobs.status = 'cancelled' THEN 4
+    ELSE 5
+    END DESC
+    `
+
+    //-------//
