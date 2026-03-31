@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/utils/dbConnection";
 import Link from "next/link";
-import GetClientStatus from "../../../utils/clientStatus";
+import GetClientStatus from "../../../utils/statusOptions";
 import SortSelect from "@/components/SortSelect";
 import { clientSortOptions, defaultClientSort, clientSelectOptions } from "@/utils/SortOptions";
 
