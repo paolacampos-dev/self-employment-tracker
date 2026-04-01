@@ -11,7 +11,8 @@ export default async function NewInvoice ()    {
     throw new Error("Unauthorized")
     }
 
-    const clientsResult = await db.query(`
+    const clientsResult = await db.query(
+        `
         SELECT * 
         FROM clients
         WHERE user_id = $1
@@ -83,8 +84,8 @@ export default async function NewInvoice ()    {
             [userId, invoiceNumber, job_id, amountCharged,  status, dateIssued, dueDate]
         )
 
-        revalidatePath("/freelancer")
-        redirect("/freelancer")
+        revalidatePath("/freelancer/invoices")
+        redirect("/freelancer/invoices")
     }
 
     return (

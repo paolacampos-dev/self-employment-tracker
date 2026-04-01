@@ -8,7 +8,7 @@ import BackButton from "@/components/buttons/BackButton";
 export default async function ClientJobsPage({ params, searchParams }) {
     const { userId } = await auth();
 /* Because dealing with a dynamic route, Next has to solve first params.clientId and then searchParams.sort
-    (params and searchParams are promises, not objects)
+    (params and searchParams although are objects for react still promises)
     (if a property access fails on async data --> await the object first):
     1. wait for searchParams to resolve
     2. Store the resolved object in a variable
