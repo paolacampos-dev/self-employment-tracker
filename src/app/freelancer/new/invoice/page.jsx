@@ -26,7 +26,9 @@ export default async function NewInvoice ()    {
         SELECT jobs.*, clients.company_name
         FROM jobs
         JOIN clients ON jobs.client_id = clients.id
+        LEFT JOIN invoices ON invoices.job_id = jobs.id
         WHERE jobs.user_id = $1 
+        AND invoices.job_id IS NULL
         ORDER BY clients.company_name ASC, jobs.title ASC
         `, 
         [userId]
@@ -47,7 +49,6 @@ export default async function NewInvoice ()    {
 
     // extract number
     let nextNumber = 1;
-
     if (lastInvoice.rows.length > 0) {
         const last = lastInvoice.rows[0].invoice_number;
         const lastNumber = parseInt(last.split("-")[1], 10);
@@ -62,10 +63,8 @@ export default async function NewInvoice ()    {
 
         const {
             user_id,
-            client_id,
-            invoiceNumber, 
+            invoice_number, 
             job_id,
-            job_details,
             amount,
             status,
             date_issued,
@@ -76,12 +75,12 @@ export default async function NewInvoice ()    {
         const dueDate = due_date || null
         const amountCharged = amount || null
 
-        db.query(
+        await db.query(
             `
-            INSERT INTO invoices (user_id, client_id, invoice_number, job_id, job_details, amount, status, date_issued, due_date)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+            INSERT INTO invoices (user_id, invoice_number, job_id, amount, status, date_issued, due_date)
+            VALUES ($1, $2, $3, $4, $5, $6, $7)
             `, 
-            [userId, client_id, invoiceNumber, job_id, job_details,  amountCharged,  status, dateIssued, dueDate]
+            [userId, invoiceNumber, job_id, amountCharged,  status, dateIssued, dueDate]
         )
 
         revalidatePath("/freelancer")

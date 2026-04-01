@@ -1,9 +1,9 @@
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/utils/dbConnection";
 import Link from "next/link";
-import GetClientStatus from "../../../utils/statusOptions";
+import { GetClientStatus } from "@/utils/statusOptions";
 import SortSelect from "@/components/SortSelect";
-import { clientSortOptions, defaultClientSort, clientSelectOptions } from "@/utils/SortOptions";
+import { clientSortOptions, defaultClientSort, clientSelectOptions } from "@/utils/sortOptions";
 
 export default async function ClientsPage({ searchParams })   {
     const { userId } = await auth()
@@ -55,43 +55,46 @@ export default async function ClientsPage({ searchParams })   {
                         </Link>
                     </div>
                 ) : (
-                    <ul className="app-list">
-                        {clients.map((client) => {
-                            const status = GetClientStatus(client.job_statuses);
+                    <div>
+                        <h1 className="text-xl font-bold mb-4 underline">Clients</h1>
+                        <ul className="app-list">
+                            {clients.map((client) => {
+                                const status = GetClientStatus(client.job_statuses);
 
-                            return (
-                                <li key={client.id} className="app-card">
-                                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0">
-                                        <h2 className="font-bold">
-                                            {client.company_name}
-                                        </h2>
+                                return (
+                                    <li key={client.id} className="app-card">
+                                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0">
+                                            <h2 className="font-bold">
+                                                {client.company_name}
+                                            </h2>
 
-                                        {status.label && (
-                                            <p className={status.className}>
-                                                {status.label}
-                                            </p>
-                                        )}
+                                            {status.label && (
+                                                <p className={status.className}>
+                                                    {status.label}
+                                                </p>
+                                            )}
 
-                                        <div className="flex flex-col gap-2 items-end">
-                                            <Link
-                                                href={`/freelancer/clients/${client.id}`}
-                                                className="app-button app-button-sm"
-                                            >
+                                            <div className="flex flex-col gap-2 items-end">
+                                                <Link
+                                                    href={`/freelancer/clients/${client.id}`}
+                                                    className="app-button app-button-sm"
+                                                >
                                                 View
-                                            </Link>
+                                                </Link>
 
-                                            <Link
-                                                href={`/freelancer/clients/${client.id}/jobs`}
-                                                className="app-button app-button-sm"
-                                            >
-                                                Jobs
-                                            </Link>
+                                                <Link
+                                                    href={`/freelancer/clients/${client.id}/jobs`}
+                                                    className="app-button app-button-sm"
+                                                >
+                                                    Jobs
+                                                </Link>
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                            );
-                        })}
-                    </ul>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </div>
                 )}
             </div>
         </>

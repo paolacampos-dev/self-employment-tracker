@@ -27,8 +27,8 @@ return(
                     <input
                         type="text"
                         name="invoice_number"
-                        defaultValue={invoice?.invoice_number || invoiceNumber}
-                        required
+                        value={invoice?.invoice_number || invoiceNumber}
+                        readOnly
                         className={styles.formInput}
                     />
                 </div>
@@ -43,22 +43,21 @@ return(
                             className={styles.formInput}
                         >
                         <option value="" disabled>Select status:</option>
-                            <option className="text-grey-300 font-bold" value="draft">Draft</option>
-                            <option className="text-blue-600 font-bold" value="sent">Sent</option>
-                            <option className="text-green-600 font-bold" value="paid">Paid</option>
-                            <option className="text-red-600 font-bold" value="sent">Outstanding</option>
+                            <option value= "Draft">Draft</option>
+                            <option value="Sent">Sent</option>
+                            <option value="Paid">Paid</option>
                     </select>
                 </div>
                 <div className={styles.formLabel}>
                     <label htmlFor="clients_id">Client:</label>
                         <select
-                            name="client_id"
+                            id="client_id"
                             value={selectedClientId}
                             onChange={(e) => {
                                 setSelectedClientId(e.target.value);
                                 setSelectedJobId("");
                             }}
-                            required
+                            readOnly
                             className={styles.formInput}
                         >
                         <option value="" disabled>Select Client:</option>
@@ -77,7 +76,7 @@ return(
                             name="job_id"
                             value={selectedJobId}
                             onChange={(e) => setSelectedJobId(e.target.value)}
-                            required
+                            readOnly
                             className={styles.formInput}
                         >
                         <option value="" disabled>Select Job:</option>
@@ -93,9 +92,8 @@ return(
                     <label htmlFor="job_details"> Job details:</label>
                         <textarea
                             id="job_details"
-                            name="job_details"
-                            defaultValue={invoice?.job_details || selectedJob?.job_details || ""}
-                            required
+                            value={invoice?.job_details || selectedJob?.job_details || ""}
+                            readOnly
                             className={styles.formInput}
                             rows={4}
                         />
