@@ -1,20 +1,16 @@
+import { jobStatusPriorityAsc, jobStatusReverse } from "./statusOptions"
 
 //-------------------Clients----------------------//
 export const clientSortOptions = {
     company_name_asc: "clients.company_name ASC NULLS LAST",
     company_name_desc: "clients.company_name DESC NULLS LAST",
-    /*jobStatusPriorityAsc,
-    jobStatusReverse,*/
 }
+export const defaultClientSort = "clients.company_name ASC NULLS LAST";
 
 export const clientSelectOptions =  [
     { value: "company_name_asc", label:"Company A-Z"},
     { value: "company_name_desc", label:"Company Z-A"},
-    /*{ value: "status_priority", label: "Status priority" },
-    { value: "status_reverse", label: "Status reverse" },*/
 ]
-
-export const defaultClientSort = "clients.company_name ASC NULLS LAST";
 
 
 // ----------------Jobs -------------------------//
@@ -29,6 +25,7 @@ export const jobSortOptions = {
     jobStatusPriorityAsc,
     jobStatusReverse,
 };
+export const defaultJobSort = "jobs.title ASC";
 
 export const jobsSelectOptions = [
     { value: "deadline_asc", label: "Deadline ↑" },
@@ -41,8 +38,6 @@ export const jobsSelectOptions = [
     { value: "title_desc", label: "Title Z-A" },
 ];
 
-export const defaultJobSort = "jobs.title ASC";
-
 
 //----------Clients/Jobs------------------------//
 export const clientJobsSortOptions = {
@@ -53,6 +48,7 @@ export const clientJobsSortOptions = {
     jobStatusPriorityAsc,
     jobStatusReverse,
 };
+export const defaultClientJobsSort = "Status priority"
 
 export const clientJobsSelectOptions = [
     { value: "deadline_asc", label: "Deadline ↑" },
@@ -62,8 +58,6 @@ export const clientJobsSelectOptions = [
     { value: "title_asc", label: "Title A-Z" },
     { value: "title_desc", label: "Title Z-A" },
 ];
-
-export const defaultClientJobsSort = "Status priority"
 
 
 //------ Expenses----------//
@@ -75,6 +69,7 @@ export const expensesSortOptions = {
     jobStatusPriorityAsc,
     jobStatusReverse,
 };
+export const defaultExpensesbSort = "jobs.title ASC";
 
 export const expensesSelectOptions = [
     { value: "deadline_asc", label: "Deadline ↑" },
@@ -85,9 +80,20 @@ export const expensesSelectOptions = [
     { value: "title_desc", label: "Title Z-A" },
 ];
 
-export const defaultExpensesbSort = "jobs.title ASC";
-
 
 // ---------------Invoices -----//
+export const invoiceSortOptions = {
+    company_asc: "clients.company_name ASC",
+    company_desc: "clients.company_name DESC",
+    date_desc: "invoices.date_issued DESC NULLS LAST",
+    date_asc: "invoices.date_issued ASC NULLS LAST",
+    status_asc: "invoices.status ASC",
+};
+export const defaultInvoicesSort = "invoices.date_issued ASC NULLS LAST"
 
-
+export const invoiceSelectOptions = [
+    { value: "company_asc", label: "Company (A-Z)" },
+    { value: "company_desc", label: "Company (Z-A)" },
+    { value: "date_desc", label: "Newest first" },
+    { value: "date_asc", label: "Oldest first" },
+];

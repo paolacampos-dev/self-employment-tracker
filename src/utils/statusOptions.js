@@ -1,6 +1,6 @@
 //--------Clients---------------//
 
-export default function GetClientStatus(jobs)   {
+export function GetClientStatus(jobs)   {
     if(!jobs || jobs.length === 0) {
             return {
                 label: "",
@@ -58,7 +58,7 @@ export default function GetClientStatus(jobs)   {
 
 //---------------------Jobs------------------//
 
-const jobStatusPriorityAsc = 
+export const jobStatusPriorityAsc = 
     `
     CASE
     WHEN jobs.status = 'live' THEN 1
@@ -68,7 +68,7 @@ const jobStatusPriorityAsc =
     ELSE 5
     END ASC
     `
-const jobStatusReverse = 
+export const jobStatusReverse = 
     `
     CASE
     WHEN jobs.status = 'live' THEN 1
@@ -79,4 +79,53 @@ const jobStatusReverse =
     END DESC
     `
 
-    //-------//
+//------Invoices ----------//
+export function GetInvoiceStatus(invoice) {
+    if (!invoice) {
+        return {
+            label: "",
+            className: "",
+        };
+    }
+
+    const today = new Date();
+    const dueDate = invoice.due_date ? new Date(invoice.due_date) : null;
+
+    const isOverdue =
+        invoice.status === "Sent" &&
+        dueDate &&
+        dueDate < today;
+
+    if (invoice.status === "Draft") {
+        return {
+            label: "Draft",
+            className: "text-gray-500 font-semibold",
+        };
+    }
+
+    if (invoice.status === "Paid") {
+        return {
+            label: "Paid",
+            className: "text-green-600 font-semibold",
+        };
+    }
+
+    if (isOverdue) {
+        return {
+            label: "Overdue",
+            className: "text-red-600 font-semibold",
+        };
+    }
+
+    if (invoice.status === "Sent") {
+        return {
+            label: "Sent",
+            className: "text-blue-600 font-semibold",
+        };
+    }
+
+    return {
+        label: "",
+        className: "",
+    };
+}
