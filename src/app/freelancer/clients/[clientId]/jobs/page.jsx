@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { db } from "@/utils/dbConnection";
 import Link from "next/link";
 import SortSelect from "@/components/SortSelect";
-import { clientJobsSortOptions, defaultJobSort, clientJobsSelectOptions } from "@/utils/SortOptions";
+import { clientJobsSortOptions, defaultJobSort, clientJobsSelectOptions } from "@/utils/sortOptions";
 import BackButton from "@/components/buttons/BackButton";
 
 export default async function ClientJobsPage({ params, searchParams }) {
