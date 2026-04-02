@@ -16,3 +16,47 @@ export const expenseCategoryOptions = [
     { value: "other", label: "Other allowable expense" },
 ];
 
+export const HMRC_MAPPING = {
+    office_costs: [
+        "software_phone_internet",
+        "office_equipment",
+        "home_office",
+    ],
+
+    travel: [
+        "travel_vehicle",
+    ],
+
+    professional_fees: [
+        "legal_financial",
+        "professional_fees",
+    ],
+
+    advertising: [
+        "marketing",
+    ],
+
+    cost_of_goods: [
+        "reselling_goods",
+    ],
+
+    staff_costs: [
+        "staff",
+    ],
+
+    repairs_maintenance: [
+        "repairs_maintenance",
+    ],
+
+    financial_costs: [
+        "bank_charges_interest",
+        "insurance",
+    ],
+
+    other: [
+        "training",
+        "clothing",
+        "other",
+    ],
+};
+
