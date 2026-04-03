@@ -23,7 +23,7 @@ export default function SortSelect({ options }) {
     }
 
     return (
-        <div className="mb-7 text-right">
+        <div className="text-right">
             <label htmlFor="sort" className="mr-2 font-semibold">
             Sort by:
             </label>

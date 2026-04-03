@@ -3,7 +3,8 @@ import { db } from "@/utils/dbConnection";
 import Link from "next/link";
 import SortSelect from "@/components/SortSelect";
 import { clientJobsSortOptions, defaultJobSort, clientJobsSelectOptions } from "@/utils/sortOptions";
-import BackButton from "@/components/buttons/BackButton";
+import CardSection from "@/components/layout/CardSection";
+import PageWrapper from "@/components/layout/PageWrapper";
 
 export default async function ClientJobsPage({ params, searchParams }) {
     const { userId } = await auth();
@@ -47,34 +48,34 @@ export default async function ClientJobsPage({ params, searchParams }) {
 
     return (
         <>
-        <BackButton href="/freelancer/clients" />
-        <div className="app-page-spacing">
-            <div className="app-card">
-            <h1 className="text-xl font-bold mb-2 underline">Jobs for {client?.company_name}</h1>
-
-            <SortSelect options={clientJobsSelectOptions}/>
-            
-            {!client ? (
-                <p>Client not found.</p>
-                ) : jobs.length === 0 ? (
-                <p>No jobs for this client yet.</p>
-                ) : (
-                <ul className="app-list">
-                    {jobs.map((job) => (
-                        <li key={job.id} className="app-card">
-                            <Link
-                                href={`/freelancer/jobs/${job.id}?returnTo=/freelancer/clients/${client.id}/jobs`}
-                                className="font-bold"
-                            >
-                            {job.title}
-                            </Link>
-                            <p className={statusColors[job.status]}>{job.status.replace("_", " ")}</p>
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
-    </div>
+        <PageWrapper
+            backHref="/freelancer/clients"
+            sort={<SortSelect options={clientJobsSelectOptions}/>}
+            wrapperClass="px-6 max-w-xl sm:max-w-2xl mx-auto"
+        >
+            <CardSection useContent={false}>
+                <h1 className="text-xl font-bold mb-2 underline">Jobs for{client?.company_name}</h1>
+                    {!client ? (
+                        <p>Client not found.</p>
+                    ) : jobs.length === 0 ? (
+                        <p>No jobs for this client yet.</p>
+                    ) : (
+                        <ul className="app-list">
+                            {jobs.map((job) => (
+                                <li key={job.id} className="app-card">
+                                    <Link
+                                        href={`/freelancer/jobs/${job.id}?returnTo=/freelancer/clients/${client.id}/jobs`}
+                                        className= "font-bold hoover:shadow-md transition"
+                                    >
+                                        <h2 className="font-bold">{job.title}</h2>
+                                        <p className={statusColors[job.status]}>{job.status.replace("_", " ")}</p>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+            </CardSection>
+        </PageWrapper>
     </>
     );
 }

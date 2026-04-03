@@ -14,7 +14,7 @@ export default function EventsForm({ action, jobs, event }) {
     );
 
     return (
-    <div className="app-page-spacing">
+    <div className="py-0">
         <div className="app-card">
             <h1 className="text-lg sm:text-xl mb-2">
             {event ? "Edit Event" : "New Event"}

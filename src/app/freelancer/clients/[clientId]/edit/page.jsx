@@ -1,7 +1,8 @@
 import { db } from "@/utils/dbConnection";
 import ClientForm from "@/components/forms/ClientForm.jsx";
 import { UpdateClient } from "@/actions/update/updateClient";
-import BackButton from "@/components/buttons/BackButton";
+import CardSection from "@/components/layout/CardSection";
+import PageWrapper from "@/components/layout/PageWrapper";
 
 export default async function EditClientPage({ params }) {
     const { clientId } = await params;
@@ -16,8 +17,14 @@ export default async function EditClientPage({ params }) {
 
     return (
     <>
-        <BackButton href={`/freelancer/clients/${clientId}`} className=""/>
-        <ClientForm action={UpdateClient} client={client} />;
+        <PageWrapper backHref={`/freelancer/clients/${clientId}`} className="px-1 md:px-11">
+            <CardSection useCard={false}>
+                <ClientForm 
+                    action={UpdateClient} 
+                    client={client} 
+                />;
+            </CardSection>
+        </PageWrapper>
     </>
     )
 }

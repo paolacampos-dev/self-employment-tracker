@@ -35,7 +35,9 @@ export default async function ClientsPage({ searchParams })   {
 
     return (
         <>
-        <SortSelect options={clientSelectOptions} />
+        <div className="without-backbutton">
+            <SortSelect options={clientSelectOptions} />
+        </div>
 
             <div className="app-card">
                 {clients.length === 0 ? (

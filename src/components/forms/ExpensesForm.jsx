@@ -10,7 +10,7 @@ export default function ExpensesForm({ action, expense, jobs, clients})    {
     const [selectedClientId, setSelectedClientId] = useState(expense?.client_id? String(expense.client_id) : "")
     const filteredJobs = jobs.filter((job) => String(job.client_id) === selectedClientId)
     return(
-        <div className="app-page-spacing">
+        <div className="py-0">
             <div className="app-card">
                 <h1 className="text-lg sm:text-xl mb-2">
                 {expense ? "Edit Expense" : "New Expense"}
