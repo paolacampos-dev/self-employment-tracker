@@ -12,7 +12,7 @@ const filteredJobs = jobs.filter((job) => String(job.client_id) === selectedClie
 const selectedJob = filteredJobs.find((job) => String(job.id) === selectedJobId)
 
 return(
-    <div className="app-page-spacing">
+    <div className="py-0">
             <div className="app-card">
                 <h1 className="text-lg sm:text-xl mb-2">
                 {invoice ? "Edit Invoice" : "New Invoice"}

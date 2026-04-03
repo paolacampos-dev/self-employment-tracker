@@ -40,7 +40,9 @@ export default async function JobsPage({ searchParams })   {
 
     return (
         <>
-            <SortSelect options={jobsSelectOptions}/>
+            <div className="mt-2 sm:mt-6 mb-2">
+                <SortSelect options={jobsSelectOptions}/>
+            </div>
             <div className="app-card">
                 {jobs.length === 0 ? (
                     <div className="text-center py-8">

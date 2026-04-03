@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 
 export default function ClientForm({ action, client }) {
     return (
-        <div className="app-page-spacing">
+        <div className="py-0">
             <div className="app-card">
                 <h1 className="text-lg sm:text-xl mb-2">
                 {client ? "Edit Client" : "New Client"}
