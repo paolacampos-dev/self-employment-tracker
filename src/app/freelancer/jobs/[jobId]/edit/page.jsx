@@ -5,14 +5,16 @@ import { UpdateJob } from "@/actions/update/updateJob.jsx";
 import CardSection from "@/components/layout/CardSection";
 import PageWrapper from "@/components/layout/PageWrapper";
 
-export default async function EditJobPage({ params }) {
+export default async function EditJob({ params }) {
     const { userId } = await auth();
     const { jobId } = await params;
 
     const query = await db.query(
         `SELECT * 
         FROM jobs 
-        WHERE id = $1 AND  user_id = $2`,
+        WHERE id = $1 AND  user_id = $2
+        `,
+
         [jobId, userId]
     );
     const job = query.rows[0];

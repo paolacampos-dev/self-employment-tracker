@@ -13,6 +13,7 @@ export default async function InvoicesPage({ searchParams }) {
     const sort = resolvedSearchParams?.sort || ""
     const orderBy = invoiceSortOptions[sort] || "invoices.date_issued ASC";
 
+    // returns all invoices for a user (list page)
     const invoicesResult = await db.query(
         `
         SELECT
@@ -61,27 +62,27 @@ export default async function InvoicesPage({ searchParams }) {
                 <div>
                     <h1 className="text-xl font-bold mb-4 underline">Invoices</h1>
                     <ul className="app-list">
-                    {invoices.map((invoice) => {
+                        {invoices.map((invoice) => {
                         const status = GetInvoiceStatus(invoice);
 
                         return (
                             <li key={invoice.id} className="app-card">
-                                <h2>{invoice.invoice_number}</h2>
-
-                                <p>{invoice.company_name}</p>
-                                <p>{invoice.job_title}</p>
-                                <p>{invoice.job_details}</p>
-
-                                <p className={status.className}>
-                                    {status.label}
-                                </p>
-
-                                <p>{invoice.amount}</p>
-                                <p>{formatDateForDisplay(invoice.date_issued)}</p>
-                                <p>{formatDateForDisplay(invoice.due_date)}</p>
+                                <Link
+                                    href= {`/freelancer/invoices/${invoice.id}?returnTo=/freelancer/invoices`}
+                                    className="flex-1 block"
+                                >
+                                    <h4 className="text-sm">{invoice.invoice_number}</h4>
+                                    <p className={status.className}>{status.label}</p>
+                                    <p className="underline font-bold mt-5">{invoice.company_name}</p>
+                                    <p>{invoice.job_title}</p>
+                                    <p >{invoice.job_details}</p>
+                                    <p className="font-bold mt-3">£: {invoice.amount}</p>
+                                    <p>Date issued: {formatDateForDisplay(invoice.date_issued)}</p>
+                                    <p className="font-bold text-red-700">Due date: {formatDateForDisplay(invoice.due_date)}</p>
+                                </Link>
                             </li>
                         )
-                    })}
+                        })}
                     </ul>
                 </div>
                 )

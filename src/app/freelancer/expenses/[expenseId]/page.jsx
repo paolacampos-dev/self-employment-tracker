@@ -2,9 +2,9 @@ import { db } from "@/utils/dbConnection";
 import DeleteExpense from "@/actions/delete/deleteExpense"
 import CrudActions from "@/components/CrudActions";
 import { formatDateForDisplay } from "@/utils/dateHelpers";
-import BackButton from "@/components/buttons/BackButton";
 import { auth } from "@clerk/nextjs/server";
-
+import CardSection from "@/components/layout/CardSection";
+import PageWrapper from "@/components/layout/PageWrapper";
 
 export default async function ExpenseId({ params }) {
     const { userId } = await auth()
@@ -28,32 +28,26 @@ export default async function ExpenseId({ params }) {
 
     return (
     <>
-        <div className="container-app">
-            <BackButton href={"/freelancer/expenses"} />
+        <PageWrapper backHref={"/freelancer/expenses"}>
+            <CardSection>            
+                <h1 className="font-semibold text-sm text-gray-500 underline">{data.company_name}</h1>
+                <h2 className="text-xl font-bold">{data.title}</h2>
+                <hr className="card-divider"></hr>
+                <div className="app-details">
+                    <p>{data.concept}</p>
+                    <p>{data.category}</p>
+                    <p>{data.amount}</p>
+                    <p>{formatDateForDisplay(data.date)}</p>
+                </div> 
 
-            <div className="px-6 py-0 max-w-xl mx-auto">
-                <div className="app-card mt-0">
-                    <div className="app-card-content">
-                        <h1 className="font-semibold text-sm text-gray-500 underline">{data.company_name}</h1>
-                        <h2 className="text-xl font-bold">{data.title}</h2>
-                        <hr className="card-divider"></hr>
-                        <div className="app-details">
-                            <p>{data.concept}</p>
-                            <p>{data.category}</p>
-                            <p>{data.amount}</p>
-                            <p>{formatDateForDisplay(data.date)}</p>
-                        </div> 
-
-                        <CrudActions
-                            editHref={`/freelancer/expenses/${data.id}/edit`}
-                            deleteAction={DeleteExpense}
-                            id={data.id}
-                            message="Are you sure you want to delete this Expense?"
-                        />
-                    </div>
-                </div>
-            </div>
-        </div>
+                <CrudActions
+                    editHref={`/freelancer/expenses/${data.id}/edit`}
+                    deleteAction={DeleteExpense}
+                    id={data.id}
+                    message="Are you sure you want to delete this Expense?"
+                />
+            </CardSection>
+        </PageWrapper>
     </>
     );
 }
