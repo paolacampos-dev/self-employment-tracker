@@ -45,22 +45,17 @@ export default async function ExpensesPage() {
                         <ul className="app-list">
                             {expenses.map((expense) => (
                                 <li key={expense.id} className="app-card flex justify-between items-center">
-                                    <div>
+                                    <Link
+                                        href={`/freelancer/expenses/${expense.id}`}
+                                        className="flex-1 block"
+                                    >
                                         <p>{expense.company_name}</p>
                                         <p>{expense.title}</p>
                                         <p className="font-bold">{expense.concept}</p>
-                                        <p>{expense.category}</p>
+                                        <p className="break-words">{expense.category}</p>
                                         <p>£{expense.amount}</p>
                                         <p>{formatDateForDisplay(expense.date)}</p>
-                                    </div>
-                                    <div>
-                                        <Link
-                                            href={`/freelancer/expenses/${expense.id}`}
-                                            className="app-button app-button-sm"
-                                        >
-                                        View
-                                        </Link>
-                                    </div>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>

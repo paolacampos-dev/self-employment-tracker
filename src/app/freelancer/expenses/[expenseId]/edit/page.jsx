@@ -2,9 +2,10 @@ import { auth } from "@clerk/nextjs/server";
 import { db } from "@/utils/dbConnection";
 import ExpensesForm from "@/components/forms/ExpensesForm";
 import { UpdateExpense } from "@/actions/update/updateExpense";
-import BackButton from "@/components/buttons/BackButton";
+import CardSection from "@/components/layout/CardSection";
+import PageWrapper from "@/components/layout/PageWrapper";
 
-export default async function EditExpensePage ({ params })  {
+export default async function EditExpense ({ params })  {
     const { userId } = await auth();
     const resolvedParams = await params;
     //the param has to be called the same name as the dynamic route [expenseId] -> expenseId
@@ -50,13 +51,16 @@ export default async function EditExpensePage ({ params })  {
 
     return(
         <>
-            <BackButton href={`/freelancer/expenses/${expenseId}`}/>
-            <ExpensesForm 
-                action={UpdateExpense} 
-                expense={expense} 
-                jobs={jobs} 
-                clients={clients}
-            />
+            <PageWrapper backHref={`/freelancer/expenses/${expenseId}`} className="px-1 md:px-11">
+                <CardSection useCard={false}>
+                    <ExpensesForm 
+                        action={UpdateExpense} 
+                        expense={expense} 
+                        jobs={jobs} 
+                        clients={clients}
+                    />
+                </CardSection>
+            </PageWrapper>
         </>
     )
 }

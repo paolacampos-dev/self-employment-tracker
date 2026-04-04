@@ -17,6 +17,7 @@ export default async function NewExpense()    {
     );
     const clients = clientResult.rows;
 
+    
 const jobsResult = await db.query(
     `
         SELECT jobs.*, clients.company_name

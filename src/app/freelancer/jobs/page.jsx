@@ -65,23 +65,26 @@ export default async function JobsPage({ searchParams })   {
                         <h1 className="text-xl font-bold mb-4 underline">Jobs</h1>
                         <ul className="app-list">
                             {jobs.map((job) => (
-                                <li key={job.id} className="app-card flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
+                                <li 
+                                    key={job.id} 
+                                    className="app-card flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center"
+                                >
                                     <Link 
                                         href={`/freelancer/jobs/${job.id}?returnTo=/freelancer/jobs`} 
-                                        className="font-bold"
+                                        className="flex-1 block font-bold"
                                     >
-                                    <div>
-                                        <p className="text-xs">{job.company_name}</p>
-                                        <p className="opacity-70 underline font-semibold">{job.title}</p>
-                                        <p className={statusColors[job.status]}>{job.status.replace("_", " ")}</p>
-                                    </div>
+                                        <div>
+                                            <p className="text-xs">{job.company_name}</p>
+                                            <p className="opacity-70 underline font-semibold">{job.title}</p>
+                                            <p className={statusColors[job.status]}>{job.status.replace("_", " ")}</p>
+                                        </div>
                                     </Link>
                                     <Link 
                                         href={`/freelancer/jobs/${job.id}/expenses`} 
                                         className="app-button flex flex-col items-center text-sm px-3 py-1 ml-4 self-start sm:self-auto"
                                     > 
-                                    <span>Expenses</span>
-                                    <span className="text-sm font-semibold "> £{Number(job.total_expenses).toFixed(2)}</span> 
+                                        <span>Expenses</span>
+                                        <span className="text-sm font-semibold "> £{Number(job.total_expenses).toFixed(2)}</span> 
                                     </Link>
                                 </li>
                             ))}
