@@ -9,5 +9,9 @@ export default async function HomePage() {
         redirect("/freelancer");
     }
 
-    return <Presentation />;
+    return (
+        <div className="px-4 sm:px6 lg:px-8">
+            <Presentation />
+        </div>
+    )
 }
