@@ -16,6 +16,22 @@ export const expenseCategoryOptions = [
     { value: "other", label: "Other allowable expense" },
 ];
 
+/* const category = expenseCategoryOptions.find(
+    (category) => category.value === value
+    );
+    if (category) {
+        return category.label;
+    } else {
+        return value;
+    } */
+export function getExpenseCategoryLabel(value) {
+    return (
+        expenseCategoryOptions.find((category) => category.value === value)?.label ||
+            value
+    );
+}
+
+
 export const HMRC_MAPPING = {
     office_costs: [
         "software_phone_internet",
@@ -60,3 +76,6 @@ export const HMRC_MAPPING = {
     ],
 };
 
+export function getHMRCLabel(value) {
+    return HMRC_LABELS[value] || value;
+}

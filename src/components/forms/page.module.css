@@ -3,6 +3,7 @@
 .formLabel {
     display: flex;
     flex-direction: column;
+    margin-top: 0.75rem;
 }
 
 .formLabel label{
@@ -17,10 +18,9 @@
     border-radius: 0.5rem;
     padding: 0.6rem 0.75rem;
     font-size: 0.95rem;
-    /* color: rgb(53, 40, 4); */
     background: white;
     transition: border 0.15s ease, box-shadow 0.15s ease;
-    margin-bottom: 1rem;
+    /*margin-bottom: 1rem;*/
 }
 
 .formInput:focus {

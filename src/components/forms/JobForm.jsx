@@ -1,5 +1,6 @@
 import styles from "./page.module.css";
 import { formatDateForInput } from "@/utils/dateHelpers.js";
+import FormButton from "./FormButton";
 
 export default function JobForm({ action, job, clients })    {
     return(
@@ -109,27 +110,44 @@ export default function JobForm({ action, job, clients })    {
 
                 <div className={styles.formLabel}>
                     <label htmlFor="hourlyRate">Hourly rate:</label>
-                    <input
-                        type="number"
-                        name="hourly_rate"
-                        defaultValue={job?.hourly_rate || ""}
-                        className={styles.formInput}
-                    />
+                        <div className="relative">
+                            <span className="absolute left-3 top-0 bottom-0 flex items-center text-gray-500 pointer-events-none">
+                                £
+                            </span>
+                            <input
+                                type="number"
+                                name="hourly_rate"
+                                id="hourly_rate"
+                                step="0.01"
+                                defaultValue={job?.hourly_rate || ""}
+                                className={styles.formInput}
+                                style={{ paddingLeft: "1.75rem" }}
+                            />
+                        </div>
                 </div>
-
+                
                 <div className={styles.formLabel}>
                     <label htmlFor="price">Price:</label>
-                    <input
-                        type="number"
-                        name="price"
-                        defaultValue={job?.price || ""}
-                        className={styles.formInput}
-                    />
+                        <div className="relative">
+                            <span className="absolute left-3 top-0 bottom-0 flex items-center text-gray-500 pointer-events-none">
+                                £
+                            </span>
+                            <input
+                                type="number"
+                                name="price"
+                                id="price"
+                                step="0.01"
+                                defaultValue={job?.price || ""}
+                                className={styles.formInput}
+                                style={{ paddingLeft: "1.75rem" }}
+                            />
+                        </div>
                 </div>
+            
 
-                <button className="app-button">
+                <FormButton>
                 {job ? "Update Job" : "Save Job"}
-                </button>
+                </FormButton>
         </form>
         </div>
     </div>

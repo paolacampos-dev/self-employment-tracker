@@ -1,4 +1,5 @@
 import styles from "./page.module.css";
+import FormButton from "./FormButton";
 
 
 export default function ClientForm({ action, client }) {
@@ -101,9 +102,9 @@ export default function ClientForm({ action, client }) {
                     />
                 </div>
 
-                <button className="app-button">
+                <FormButton>
                 {client ? "Update Client" : "Save Client"}
-                </button>
+                </FormButton>
         </form>
         </div>
     </div>

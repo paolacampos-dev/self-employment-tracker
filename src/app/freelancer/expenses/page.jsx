@@ -1,6 +1,7 @@
 import { db } from "@/utils/dbConnection";
 import { auth } from "@clerk/nextjs/server";
 import { formatDateForDisplay } from "@/utils/dateHelpers";
+import { getExpenseCategoryLabel } from "@/utils/expenseCategories";
 import Link from "next/link";
 
 export default async function ExpensesPage() {
@@ -52,7 +53,7 @@ export default async function ExpensesPage() {
                                         <p>{expense.company_name}</p>
                                         <p>{expense.title}</p>
                                         <p className="font-bold">{expense.concept}</p>
-                                        <p className="break-words">{expense.category}</p>
+                                        <p className="break-words">{getExpenseCategoryLabel(expense.category)}</p>
                                         <p>£{expense.amount}</p>
                                         <p>{formatDateForDisplay(expense.date)}</p>
                                     </Link>

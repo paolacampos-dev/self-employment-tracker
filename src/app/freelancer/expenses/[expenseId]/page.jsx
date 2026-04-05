@@ -2,6 +2,7 @@ import { db } from "@/utils/dbConnection";
 import DeleteExpense from "@/actions/delete/deleteExpense"
 import CrudActions from "@/components/CrudActions";
 import { formatDateForDisplay } from "@/utils/dateHelpers";
+import { getExpenseCategoryLabel } from "@/utils/expenseCategories";
 import { auth } from "@clerk/nextjs/server";
 import CardSection from "@/components/layout/CardSection";
 import PageWrapper from "@/components/layout/PageWrapper";
@@ -35,8 +36,8 @@ export default async function ExpenseId({ params }) {
                 <hr className="card-divider"></hr>
                 <div className="app-details">
                     <p>{data.concept}</p>
-                    <p>{data.category}</p>
-                    <p>{data.amount}</p>
+                    <p>{getExpenseCategoryLabel(data.category)}</p>
+                    <p>£ {data.amount}</p>
                     <p>{formatDateForDisplay(data.date)}</p>
                 </div> 
 

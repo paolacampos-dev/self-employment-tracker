@@ -2,6 +2,7 @@
 
 import styles from "./page.module.css"
 import { formatDateForInput } from "@/utils/dateHelpers.js";
+import FormButton from "./FormButton";
 import { useState } from "react";
 
 export default function InvoicesForm({ action, jobs, clients, invoice, invoiceNumber })    {
@@ -100,18 +101,23 @@ return(
                 </div>
                 
                 <div className={styles.formLabel}>
-                    <label htmlFor="amount">Amount:</label>
-                    <input
-                        id="amount"
-                        type="number"
-                        name="amount"
-                        step="0.01"
-                        min="0"
-                        defaultValue={invoice?.amount || ""}
-                        className={styles.formInput} 
-                    />
+                    <label htmlFor="amount">amount:</label>
+                        <div className="relative">
+                            <span className="absolute left-3 top-0 bottom-0 flex items-center text-gray-500 pointer-events-none">
+                                £
+                            </span>
+                            <input
+                                type="number"
+                                name="amount"
+                                id="amount"
+                                step="0.01"
+                                defaultValue={invoice?.amount || ""}
+                                className={styles.formInput}
+                                style={{ paddingLeft: "1.75rem" }}
+                            />
+                        </div>
                 </div>
-
+                
                 <div className={styles.formLabel}>
                     <label htmlFor="date_issued">Date Issued:</label>
                     <input
@@ -134,9 +140,9 @@ return(
                     />
                 </div>
 
-                <button className="app-button">
+                <FormButton>
                 {invoice ? "Update Invoice" : "Save Invoice"}
-                </button>
+                </FormButton>
         </form>
         </div>
     </div>

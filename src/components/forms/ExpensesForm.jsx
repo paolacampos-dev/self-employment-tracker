@@ -3,6 +3,7 @@
 import styles from "./page.module.css";
 import { formatDateForInput } from "@/utils/dateHelpers.js";
 import { expenseCategoryOptions } from "@/utils/expenseCategories";
+import FormButton from "./FormButton";
 import { useState } from "react";
 
 
@@ -53,7 +54,6 @@ export default function ExpensesForm({ action, expense, jobs, clients})    {
                         ))}
                         </select>
                 </div>
-                
                 <div className={styles.formLabel}>
                     <label htmlFor="concept">Expense Concept:</label>
                     <input
@@ -64,7 +64,7 @@ export default function ExpensesForm({ action, expense, jobs, clients})    {
                         className={styles.formInput}
                     />
                 </div>
-                <div>
+                <div className={styles.formLabel}>
                     <label htmlFor="category">Category:</label>
                     <select 
                         name="category" 
@@ -82,14 +82,21 @@ export default function ExpensesForm({ action, expense, jobs, clients})    {
 
                 <div className={styles.formLabel}>
                     <label htmlFor="amount">Amount:</label>
-                    <input
-                        type="number"
-                        name="amount"
-                        defaultValue={expense?.amount || ""}
-                        className={styles.formInput}
-                    />
+                        <div className="relative">
+                            <span className="absolute left-3 top-0 bottom-0 flex items-center text-gray-500 pointer-events-none">
+                                £
+                            </span>
+                            <input
+                                type="number"
+                                name="amount"
+                                id="amount"
+                                step="0.01"
+                                defaultValue={expense?.amount || ""}
+                                className={styles.formInput}
+                                style={{ paddingLeft: "1.75rem" }}
+                            />
+                        </div>
                 </div>
-
 
                 <div className={styles.formLabel}>
                     <label htmlFor="date">Date:</label>
@@ -101,9 +108,9 @@ export default function ExpensesForm({ action, expense, jobs, clients})    {
                     />
                 </div>
 
-                <button className="app-button">
+                <FormButton>
                 {expense ? "Update Expense" : "Save Expense"}
-                </button>
+                </FormButton>
         </form>
         </div>
     </div>
