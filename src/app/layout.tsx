@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
-import "./globals.css";
+import "/globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
@@ -16,16 +16,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: {
-    default: "SelfTrack — Freelance Income & Tax Tracker",
-    template: "%s | SelfTrack",
+  metabase: new URL("htpps://selftrack.paolacampos.dev"),
+  title: "SelfTrack — Freelance Income & Tax Tracker",
+  description: "Freelance Management app for tracking clients, jobs, income & Tax",
+  icons: {
+    icon: "/favicon.png"
   },
-  description:
-    "Track clients, income, expenses, and tax estimates in one simple dashboard built for freelancers.",
   openGraph: {
     title: "SelfTrack — Freelance Income & Tax Tracker",
     description:
-      "Track clients, income, expenses, and tax estimates in one simple dashboard.",
+      "Freelance Management app for tracking clients, jobs, income & Tax",
+    images:   [
+      {
+        url: "/favicon.png", 
+        width: 512, 
+        height: 512,
+        alt: "Paola Campos - dev Logo",
+      },
+    ],
     type: "website",
   },
 };
