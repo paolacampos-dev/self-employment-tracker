@@ -63,7 +63,6 @@ Built with Next.js, PostgreSQL and Clerk authentication.
 
 - Calendar / scheduling integration
 - Advanced financial reporting and analytics
-- Automation features (AI agents)
 - Refactor and unify styling by improving consistency between Tailwind CSS and custom CSS
 
 ---
