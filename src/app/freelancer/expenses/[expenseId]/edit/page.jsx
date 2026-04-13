@@ -43,12 +43,6 @@ export default async function EditExpense ({ params })  {
     )
     const clients = clientQuery.rows
 
-    console.log("params:", params)
-    console.log("expenseQuery rows:", expenseQuery.rows)
-    console.log("expense:", expense)
-    console.log("jobs:", jobs)
-    console.log("clients:", clients)
-
     return(
         <>
             <PageWrapper backHref={`/freelancer/expenses/${expenseId}`} className="px-1 md:px-11">
